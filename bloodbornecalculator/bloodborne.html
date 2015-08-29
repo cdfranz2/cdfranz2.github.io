@@ -1,0 +1,289 @@
+<html>
+<head>
+	<title>Bloodborne Skill Calculator</title>
+	<link rel='stylesheet' type='text/css' href='stylesheet.css' />
+</head>
+
+<body>
+	<div id='main'>
+		<div class='centered'>
+			<div id='main_container'>
+				<!-- left column -->
+				<div class='stat_container' id='core_stats'>
+					<div id='origin'>
+						<br/><br/>
+						<span>Origin: </span>
+						<select id='originselect'>
+							<option>Milquetoast</option>
+							<option>Lone Survivor</option>
+							<option>Violent Past</option>
+							<option>Professional</option>
+							<option>Military Veteran</option>
+							<option>Noble Scion</option>
+							<option>Cruel Fate</option>
+							<option>Waste of Skin</option>
+						</select>
+					</div>
+					<div class='core_stat_container' id='core_stat_names'>
+						<div class='stat_item'><div class='centered'></div></div>
+						<div class='stat_item'><div class='centered'>Level</div></div>
+						<div class='stat_item'><div class='centered'>Blood Echoes</div></div>
+						<div class='stat_item'><div class='centered'></div></div>
+						<div class='stat_item'><div class='centered'>Vitality</div></div>
+						<div class='stat_item'><div class='centered'>Endurance</div></div>
+						<div class='stat_item'><div class='centered'>Strength</div></div>
+						<div class='stat_item'><div class='centered'>Skill</div></div>
+						<div class='stat_item'><div class='centered'>Bloodtinge</div></div>
+						<div class='stat_item'><div class='centered'>Arcane</div></div>
+					</div>
+					<div class='core_stat_container' id='initial'>
+						<div class='stat_item'><div class='centered'>Starting</div></div>
+						<div class='stat_item'><div class='centered' id='initlvl'></div></div>
+						<div class='stat_item'><div class='centered'></div></div>
+						<div class='stat_item'><div class='centered'></div></div>
+						<div class='stat_item'><div class='centered'><input type='number' min='1' max='99' id='initvit'></div></div>
+						<div class='stat_item'><div class='centered'><input type='number' min='1' max='99' id='initend'></div></div>
+						<div class='stat_item'><div class='centered'><input type='number' min='1' max='99' id='initstr'></div></div>
+						<div class='stat_item'><div class='centered'><input type='number' min='1' max='99' id='initski'></div></div>
+						<div class='stat_item'><div class='centered'><input type='number' min='1' max='99' id='initbld'></div></div>
+						<div class='stat_item'><div class='centered'><input type='number' min='1' max='99' id='initarc'></div></div>
+					</div>
+					<div class='core_stat_container' id='final'>
+						<div class='stat_item'><div class='centered'>Final</div></div>
+						<div class='stat_item'><div class='centered' id='finallvl'></div></div>
+						<div class='stat_item'><div class='centered' id='bloodechoes'>1,000,000</div></div>
+						<div class='stat_item'><div class='centered'></div></div>
+						<div class='stat_item'><div class='centered'><input type='number' min='1' max='99' id='finalvit'></div></div>
+						<div class='stat_item'><div class='centered'><input type='number' min='1' max='99' id='finalend'></div></div>
+						<div class='stat_item'><div class='centered'><input type='number' min='1' max='99' id='finalstr'></div></div>
+						<div class='stat_item'><div class='centered'><input type='number' min='1' max='99' id='finalski'></div></div>
+						<div class='stat_item'><div class='centered'><input type='number' min='1' max='99' id='finalbld'></div></div>
+						<div class='stat_item'><div class='centered'><input type='number' min='1' max='99' id='finalarc'></div></div>
+					</div>
+				</div>
+				<!-- middle column -->
+				<div class='stat_container' id='weapon_stats'>
+					<div class='weapon_container' id='right_hand'>
+						<div class='weapon_select' id='rhandselect'>
+							<div style='width:100%;height:50%;padding-top:20px'>Right Hand</div>
+							<div style='width:50%;height:50%;float:left'>Hey</div>
+							<div style='width:50%;height:50%;float:left'>
+								<select class='weaponname'>
+									<option>Saw Cleaver</option>
+									<option>Threaded Cane</option>
+								</select>
+								<select class='weaponupgrade'>
+									<option>+0</option>
+									<option>+1</option>
+									<option>+2</option>
+									<option>+3</option>
+									<option>+4</option>
+									<option>+5</option>
+									<option>+6</option>
+									<option>+7</option>
+									<option>+8</option>
+									<option>+9</option>
+									<option>+10</option>
+								</select>
+							</div>
+						</div>
+						<div class='weapon_info' id='rhandinfo'>
+							<div>Scaling:</div>
+							<br/>
+							<div style='width:25%;float:left' class='str'>C</div>
+							<div style='width:25%;float:left' class='ski'>C</div>
+							<div style='width:25%;float:left' class='bld'>C</div>
+							<div style='width:25%;float:left' class='arc'>C</div>
+							<br/>
+							<br/>
+							<div class='base'>Base ATK: 128</div>
+							<div class='final'>Final ATK: 256</div>
+						</div>
+					</div>
+					<div class='weapon_container' id='left_hand'>
+						<div class='weapon_select' id='lhandselect'>
+							<div style='width:100%;height:50%;padding-top:20px'>Left Hand</div>
+							<div style='width:50%;height:50%;float:left'>Hey</div>
+							<div style='width:50%;height:50%;float:left'>
+								<select class='weaponname'>
+									<option>Saw Cleaver</option>
+									<option>Threaded Cane</option>
+								</select>
+								<select class='weaponupgrade'>
+									<option>+0</option>
+									<option>+1</option>
+									<option>+2</option>
+									<option>+3</option>
+									<option>+4</option>
+									<option>+5</option>
+									<option>+6</option>
+									<option>+7</option>
+									<option>+8</option>
+									<option>+9</option>
+									<option>+10</option>
+								</select>
+							</div>
+						</div>
+						<div class='weapon_info' id='lhandinfo'>
+							<div>Scaling:</div>
+							<br/>
+							<div style='width:25%;float:left' class='str'>C</div>
+							<div style='width:25%;float:left' class='ski'>C</div>
+							<div style='width:25%;float:left' class='bld'>C</div>
+							<div style='width:25%;float:left' class='arc'>C</div>
+							<br/>
+							<br/>
+							<div class='base'>Base ATK: 128</div>
+							<div class='final'>Final ATK: 256</div>
+						</div>
+					</div>
+				</div>
+				<!-- right column -->
+				<div class='stat_container' id='status'>
+					<div style='width:70%;float:left'>
+						<div class='stat_item'><div class='centered'></div></div>
+						<div class='stat_item'><div class='centered'>HP</div></div>
+						<div class='stat_item'><div class='centered'>Stamina</div></div>
+						<div class='stat_item'><div class='centered'>Discovery</div></div>
+						<div class='stat_item'><div class='centered'></div></div>
+						<div class='stat_item'><div class='centered'>Physical DEF</div></div>
+						<div class='stat_item'><div class='centered'>Slow Poison RES</div></div>
+						<div class='stat_item'><div class='centered'>Rapid Poison RES</div></div>
+						<div class='stat_item'><div class='centered'>Frenzy RES</div></div>
+						<div class='stat_item'><div class='centered'>Beasthood</div></div>
+					</div>
+					<div style='width:30%;float:left;'>
+						<div class='stat_item'><div class='centered'></div></div>
+						<div class='stat_item'><div class='centered' id='hp'></div></div>
+						<div class='stat_item'><div class='centered' id='stam'></div></div>
+						<div class='stat_item'><div class='centered' id='disc'></div></div>
+						<div class='stat_item'><div class='centered'></div></div>
+						<div class='stat_item'><div class='centered' id='physdef'></div></div>
+						<div class='stat_item'><div class='centered' id='slowpois'></div></div>
+						<div class='stat_item'><div class='centered' id='rapidpois'></div></div>
+						<div class='stat_item'><div class='centered' id='frenzy'></div></div>
+						<div class='stat_item'><div class='centered' id='beasthood'></div></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script type='text/template' id='weapon-select-template'>
+		<div style='width:100%;height:30%;padding-top:20px'><%=hand%></div>
+		<div style='width:50%;height:50%;float:left' class='weaponimg'><img src='<%=image%>'></div>
+		<div style='width:50%;height:50%;float:left'>
+			<select class='weaponname'>
+				<option>Saw Cleaver</option>
+				<option>Threaded Cane</option>
+			</select>
+			<select class='weaponupgrade'>
+				<option value='0'>+0</option>
+				<option value='1'>+1</option>
+				<option value='2'>+2</option>
+				<option value='3'>+3</option>
+				<option value='4'>+4</option>
+				<option value='5'>+5</option>
+				<option value='6'>+6</option>
+				<option value='7'>+7</option>
+				<option value='8'>+8</option>
+				<option value='9'>+9</option>
+				<option value='10'>+10</option>
+			</select>
+		</div>
+	</script>
+	<script type='text/template' id='weapon-stat-template'>
+		<div>Scaling:</div>
+		<br/>
+		<div style='width:25%;float:left' class='str'><%=strscl%></div>
+		<div style='width:25%;float:left' class='ski'><%=skiscl%></div>
+		<div style='width:25%;float:left' class='bld'><%=bldscl%></div>
+		<div style='width:25%;float:left' class='arc'><%=arcscl%></div>
+		<br/>
+		<br/>
+		<div class='base'>Base ATK: <%=baseatk%></div>
+		<div class='final'>Final ATK: <%=finalatk%></div>
+	</script>
+	<script src='underscore.js'></script>
+	<script src='jquery.js'></script>
+	<script src='backbone.js'></script>
+	<script src='info.js'></script>
+	<script src='models.js'></script>
+	<script src='views.js'></script>
+	<script>
+		//selected from dropdown menu
+		var baseChar = new Character(origins["Milquetoast"]);
+		//left column; must be >= baseChar's stats
+		var initChar = new Character(origins["Milquetoast"]);
+		initChar.set('startpoint', baseChar);
+		//when the base char changes, reset the initial character
+		initChar.listenTo(baseChar, 'change', initChar.reset);
+		//right column; must be >= initChar's stats
+		var finalChar = new Character(origins["Milquetoast"]);
+		finalChar.set('startpoint', initChar);
+
+		//set up weapons
+		var weapons = new Weapons;
+
+		weapons.add([
+			new Weapon({
+				name: 'Saw Cleaver',
+				lvl: 0,
+				scalingInfo: weaponInfo['Saw Cleaver'],
+				character: finalChar,
+				image: '\'cleaver.jpg\''
+			}),
+			new Weapon({
+				name: 'Threaded Cane',
+				lvl: 0,
+				scalingInfo: weaponInfo['Threaded Cane'],
+				character: finalChar,
+				image: '\'cane.jpg\''
+			})
+		]);
+		
+		var leftHand = new Weapon({hand: 'Left Hand', name: 'Saw Cleaver', lvl: 0, scalingInfo: weaponInfo['Saw Cleaver'], character: finalChar, image: 'cleaver.jpg'});
+		var rightHand = new Weapon({hand: 'Right Hand', name: 'Saw Cleaver', lvl: 0, scalingInfo: weaponInfo['Saw Cleaver'], character: finalChar, image: 'cleaver.jpg'});
+
+		var leftHandSelect = new WeaponSelect({el: $('#lhandselect'), model: leftHand});
+		var rightHandSelect = new WeaponSelect({el: $('#rhandselect'), model: rightHand});
+
+		var leftHandStats = new WeaponStatView({el: $('#lhandinfo'), model: leftHand});
+		var rightHandStats = new WeaponStatView({el: $('#rhandinfo'), model: rightHand});
+
+		//set up stat views
+		var initlvl = new SecondaryStatView({el: $('#initlvl'), model: initChar, name: 'lvl'}),
+			finallvl = new SecondaryStatView({el: $('#finallvl'), model: finalChar, name: 'lvl'}),
+			hp = new SecondaryStatView({el: $('#hp'), model: finalChar, name: 'hp'}),
+			stam = new SecondaryStatView({el: $('#stam'), model: finalChar, name: 'stam'}),
+			disc = new SecondaryStatView({el: $('#disc'), model: finalChar, name: 'disc'}),
+			physdef = new SecondaryStatView({el: $('#physdef'), model: finalChar, name: 'physdef'}),
+			slowpois = new SecondaryStatView({el: $('#slowpois'), model: finalChar, name: 'slowpois'}),
+			rapidpois = new SecondaryStatView({el: $('#rapidpois'), model: finalChar, name: 'rapidpois'}),
+			frenzy = new SecondaryStatView({el: $('#frenzy'), model: finalChar, name: 'frenzy'}),
+			beasthood = new SecondaryStatView({el: $('#beasthood'), model: finalChar, name: 'beasthood'});
+
+		//initial stats
+		var initvit = new PrimaryStatView({el: $('#initvit'), model: initChar, name: 'vit'}),
+			initend = new PrimaryStatView({el: $('#initend'), model: initChar, name: 'end'}),
+			initstr = new PrimaryStatView({el: $('#initstr'), model: initChar, name: 'str'}),
+			initski = new PrimaryStatView({el: $('#initski'), model: initChar, name: 'ski'}),
+			initbld = new PrimaryStatView({el: $('#initbld'), model: initChar, name: 'bld'}),
+			initarc = new PrimaryStatView({el: $('#initarc'), model: initChar, name: 'arc'});
+		//final stats
+		var finalvit = new PrimaryStatView({el: $('#finalvit'), model: finalChar, name: 'vit'}),
+			finalend = new PrimaryStatView({el: $('#finalend'), model: finalChar, name: 'end'}),
+			finalstr = new PrimaryStatView({el: $('#finalstr'), model: finalChar, name: 'str'}),
+			finalski = new PrimaryStatView({el: $('#finalski'), model: finalChar, name: 'ski'}),
+			finalbld = new PrimaryStatView({el: $('#finalbld'), model: finalChar, name: 'bld'}),
+			finalarc = new PrimaryStatView({el: $('#finalarc'), model: finalChar, name: 'arc'});
+
+		var bloodEchoesView = new BloodEchoesView;
+
+		var originSelector = new OriginSelector({model: baseChar});
+
+	</script>
+
+</body>
+
+</html>

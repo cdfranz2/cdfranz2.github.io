@@ -1,0 +1,179 @@
+@font-face{
+	font-family: 'Game of Thrones';
+	src: url(got.ttf);
+}
+
+@font-face{
+	font-family: 'Electra';
+	src: url(electra.otf);
+}
+
+@font-face{
+	font-family: 'Catull BQ Medium';
+	src: url(CatullBQMedium.otf);
+}
+
+@font-face{
+	font-family: 'Catull Medium';
+	src: url(CatullMedium.ttf);
+}
+
+body {
+	background: url(paper.png);
+	font-family: Electra, sans-serif;
+	padding-top: 5px;
+	width: 720px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+#generate-button {
+	background: transparent;
+	float:center;
+	border-radius: 5px;
+	color: #000000;
+	text-align: center;
+	width: 100px;
+	height: 50px;
+	line-height: 50px;
+	position: relative;
+	margin: 20px auto auto;
+	border: 3px solid #000000;
+}
+
+#generate-button:hover {
+	background-color: transparent;
+	border: 4px solid #000000;
+	font-weight: bold;
+}
+
+.black {
+	color: #ffffff !important;
+	background-color: #000000 !important;
+}
+
+#title {
+	font: bold 30px "Catull BQ Medium", "Catull Medium", Electra;
+	text-align: center;
+}
+
+#charName {
+	opacity: 1;
+	font: 40px "Catull BQ Medium", "Catull Medium", Electra;
+	text-align: center;
+	margin-bottom: 10px;
+}
+
+#charDesc {
+	opacity: 1;
+	font-family: Electra, Georgia, "Times New Roman", Times, serif;
+	text-align: center;
+	margin-left: 10%;
+	margin-right: 10%;
+}
+
+#char {
+	height: 100px;
+}
+
+#main {
+	display: table;
+	position: absolute;
+	height: 70%;
+	width: 720;
+}
+
+#centered {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+#footer {
+	bottom: 0;
+	position: absolute;
+	width: 720;
+}
+
+.drawer {
+	width: 720px;
+	display: inline-block;
+	text-align: center;
+}
+
+.drawer-body {
+	height: 150px;
+	display: none;
+	background-color: transparent;
+	border-collapse: collapse;
+}
+
+.drawer-tab {
+	height: 20px;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-style: solid;
+	padding-top: 3px;
+	border-color: #000000;
+}
+
+.drawer-tab:hover {
+	height: 20px;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-style: solid;
+	padding-top: 3px;
+	background-color: #000000;
+	color: #ffffff;
+}
+
+
+.category {
+	display: inline-block;
+	height: 150px	
+}
+
+#gender-drawer {
+	width: 120px;
+	float: left;
+}
+
+#region-drawer {
+	width: 240px;
+	float: left;
+}
+
+#house-drawer {
+	width: 360px;
+}
+
+.drawer-table {
+	height: 150px;
+	text-align: center;
+	border-collapse: collapse;
+	border-color: #000000;
+	border-left-style: solid;
+}
+
+td {
+	width: 120px;
+	height: 30px;
+	padding: 4px 0px 0px;
+	font-size: 16px;
+}
+
+.gender:hover {
+	background-color: rgba(0, 0, 0, 0.35);
+}
+
+.region:hover {
+	background-color: rgba(0, 0, 0, 0.35);
+}
+
+.house:hover {
+	background-color: rgba(0, 0, 0, 0.35);
+}
+
+.selected {
+	background-color: #000000 !important;
+	color: #ffffff;
+}

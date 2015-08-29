@@ -1,0 +1,642 @@
+<html>
+<head>
+	<title>ASoIaF Character Generator</title>
+	<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	
+	<script type="text/javascript">
+	
+	var generated = false;
+	
+	var selectedGender = "Random";
+	var selectedRegion = "Random";
+	var selectedHouse = "Random";
+	
+	$(document).ready(function() {
+		
+		disableSelection(document.getElementById('generate-button'));
+		disableSelection(document.getElementById('footer'));
+		
+		$('#generate-button').mousedown(function() {
+			$('#generate-button').addClass('black');
+		});	
+		
+		$('#generate-button').mouseup(function() {
+			$(this).removeClass("black");
+			
+			var $all = $('#main');
+			var $both = $('#charName, #charDesc');
+			
+			if (generated) {
+			$all.fadeOut('fast', generateCharacter);
+			}
+			else {
+				generated = true;
+				$all.fadeOut(0, generateCharacter);
+			}	
+			
+			$all.fadeIn('fast');
+		});	
+		
+		$('#generate-button').mouseleave(function() {
+			$(this).removeClass("black");
+		});	
+		
+		$('.drawer-tab').click(function() {
+			$(this).next().slideToggle();
+		});
+		
+		$('.gender').click(function() {
+			if ($(this).html() != selectedGender){
+				$('.gender').removeClass('selected');
+				$(this).addClass('selected');
+				selectedGender = $(this).html();
+			}
+		});
+		
+		$('.region').click(function() {
+			if ($(this).html() != selectedRegion){
+				$('.region').removeClass('selected');
+				$(this).addClass('selected');
+				selectedRegion = $(this).html();
+				selectedHouse = 'Random';
+				setHouseOptions();
+			}
+		});
+		
+		$('#house-table').on('click', '.house', function() {
+			if ($(this).html() != selectedRegion){
+				$('.house').removeClass('selected');
+				$(this).addClass('selected');
+				selectedHouse = $(this).html();
+			}
+		});
+	});
+	
+	function setHouseOptions(){
+		if (selectedRegion === 'Random') {
+			$('#house-table').html('<tr><td></td></tr>');
+		} else {
+			var houses = houseNames[selectedRegion]();
+			var table = '';
+			for (var i = 0; i < houses.length; i++) {
+				if (i % 3 == 0){table += '<tr>';}
+				table += '<td class=\'house\'>' + houses[i] + '</td>';
+				if (i % 3 == 2){table += '</tr>';}
+			}
+			table += '<td class=\'house selected\'>Random</td></tr>';
+			$('#house-table').html(table);
+		}
+	}
+	
+	function generateCharacter(){
+		var character = new Character(selectedGender, selectedRegion, selectedHouse);
+		
+		$('#charName').html(character.getName());
+		
+		$('#charDesc').html(character.getDesc());
+	}
+	
+	var houseNames = {
+		'North': function() {
+			return ['Stark', 'Bolton', 'Karstark', 'Glover', 'Mormont',
+					'Manderly', 'Umber', 'Tallhart', 'Cerwyn', 'Reed',
+					'Cassel', 'Poole', 'Flint', 'Snow'];
+		},
+		'Westerlands': function() {
+			return ['Lannister', 'Clegane', 'Crakehall', 'Marbrand', 'Plumm',
+					'Swyft', 'Westerling', 'Spicer', 'Payne', 'Lorch',
+					'Peckledon', 'Yarwyck', 'Brax', 'Hill'];
+		},
+		'Iron Islands': function() {
+			return ['Greyjoy', 'Botley', 'Drumm', 'Harlaw', 'Saltcliffe',
+					'Codd', 'Goodbrother', 'Stonetree', 'Sunderly', 'Weaver',
+					'Orkwood', 'Blacktyde', 'Farwynd',  'Pyke'];
+		},
+		'Riverlands': function() {
+			return ['Tully', 'Blackwood', 'Bracken', 'Mallister', 'Frey',
+					'Smallwood', 'Whent', 'Butterwell', 'Darry', 'Mooton',
+					'Piper', 'Ryger', 'Grell', 'Rivers'];
+		},
+		'Vale': function() {
+			return ['Arryn', 'Baelish', 'Corbray', 'Hardyng', 'Hunter',
+					'Coldwater', 'Moore', 'Royce', 'Tollett', 'Waynwood',
+					'Egen', 'Grafton', 'Belmore', 'Stone'];
+		},
+		'Stormlands': function() {
+			return ['Baratheon', 'Wagstaff', 'Connington', 'Dondarrion', 'Estermont',
+					'Penrose', 'Seaworth', 'Selmy', 'Swann', 'Tarth',
+					'Trant', 'Wagstaff', 'Grandison', 'Storm'];
+		},
+		'Crownlands': function() {
+			return ['Targaryen', 'Bywater', 'Celtigar', 'Chyttering', 'Hollard',
+					'Stokeworth', 'Kettleblack', 'Manning', 'Rosby', 'Rykker',
+					'Thorne', 'Slynt', 'Velaryon', 'Waters'];
+		},
+		'Reach': function() {
+			return ['Tyrell', 'Tarly', 'Redwyne', 'Bulwer', 'Merryweather',
+					'Florent', 'Fossoway', 'Hightower', 'Ashford', 'Rowan',
+					'Oakheart', 'Beesbury', 'Mullendore', 'Flowers'];
+		},
+		'Dorne': function() {
+			return ['Martell', 'Blackmont', 'Dayne', 'Jordayne', 'Dalt',
+					'Yronwood', 'Vaith', 'Santagar', 'Qorgyle', 'Fowler',
+					'Allyrion', 'Manwoody', 'Dalt', 'Sand'];
+		}
+	}
+	
+	var firstNames = {
+		'North': function(gender) {
+			if (gender === 'Male') {
+				return ['Albett', 'Alyn', 'Bael', 'Domeric', 'Roose',
+						'Borcas', 'Bran', 'Brandon', 'Brandon', 'Brandon',
+						'Jory', 'Martyn', 'Rodrik', 'Cayn', 'Kyle',
+						'Desmond', 'Roderick', 'Donnel', 'Gage', 'Gavin',
+						'Galbart', 'Gawen', 'Robett', 'Grenn', 'Ronnel',
+						'Harwin', 'Hobb', 'Hodor', 'Hullen', 'Jarl',
+						'Jorquen', 'Eddard', 'Harrion', 'Rickard', 'Torrhen',
+						'Mallador', 'Bowen', 'Jeor', 'Jorah', 'Veyon',
+						'Howland', 'Jojen', 'Wyman', 'Ragwyle', 'Jon',
+						'Benjen', 'Cregan', 'Dorren', 'Ramsay', 'Robb',
+						'Edrick', 'Jonos', 'Walton', 'Benfred', 'Leobald',
+						'Tormund', 'Toregg', 'Hother', 'Mors', 'Will',
+						'Wendel', 'Wylis', 'Dickon', 'Rickard', 'Rickon'];
+			} else {
+				return ['Bethany', 'Jonelle', 'Dalla', 'Barbrey', 'Lyessa',
+						'Gilly', 'Harma', 'Holly', 'Donella', 'Jyana',
+						'Kyra', 'Wylla', 'Wynafryd', 'Maris', 'Alysane',
+						'Lyanna', 'Jorelle', 'Dacey', 'Maege', 'Myranda',
+						'Osha', 'Palla', 'Meera', 'Ros', 'Sansa',
+						'Arya', 'Eddara', 'Val', 'Ygritte', 'Jeyne'];
+			}
+		},
+		'Westerlands': function(gender) {
+			if (gender === 'Male') {
+				return ['Robert', 'Rupert', 'Tytos', 'Herrock', 'Cedric',
+						'Emrick', 'Burton', 'Chiswyck', 'Sandor', 'Gregor',
+						'Lyle', 'Merlon', 'Roland', 'Sumner', 'Tybolt',
+						'Dunsen', 'Garth', 'Preston', 'Melara', 'Damion',
+						'Damon', 'Jaime', 'Jason', 'Lancel', 'Loren',
+						'Lucion', 'Martyn', 'Stafford', 'Theomore', 'Tommen',
+						'Tywin', 'Leo', 'Lorent', 'Lyonel', 'Lewys',
+						'Addam', 'Damon', 'Denys', 'Ilyn', 'Podrick',
+						'Josmyn', 'Dennis', 'Harwyn', 'Ossifer', 'Peter',
+						'Harys', 'Humfrey', 'Othell', 'Raynald', 'Rollam',
+						'Joffrey', 'Tommen', 'Tyrion'];
+			} else {
+				return ['Amarei', 'Melesa', 'Shiera', 'Joy', 'Genna',
+						'Rosamund', 'Margot', 'Myrielle', 'Joanna', 'Lanna',
+						'Leonella', 'Jeyne', 'Dorna', 'Shierle', 'Ellyn',
+						'Tysha', 'Eleyna', 'Cerenna', 'Cersei', 'Darlessa',
+						'Tyta', 'Myrcella'];
+			}
+		},
+		'Iron Islands': function(gender) {
+			if (gender === 'Male') {
+				return ['Beron', 'Bennarion', 'Harlon', 'Harren', 'Quellon',
+						'Sargon', 'Sawane', 'Tristifer', 'Vickon', 'Cerrick',
+						'Lucas', 'Eldred', 'Dagmer', 'Dale', 'Dunstan',
+						'Hilmar', 'Roryn', 'Ygon', 'Gelmarr', 'Gorold',
+						'Gormond', 'Norne', 'Torgon', 'Urragon', 'Urron',
+						'Balon', 'Dagon', 'Donel', 'Dalton', 'Maron',
+						'Quellon', 'Quenton', 'Rodrik', 'Theon', 'Urrigon',
+						'Victarion', 'Euron', 'Harl', 'Hotho', 'Harras',
+						'Erik', 'Thormor', 'Urek', 'Kenned', 'Kromm',
+						'Manfryd', 'Lorren', 'Nute', 'Rolfe', 'Roggon',
+						'Stygg', 'Todric', 'Tymor', 'Ulf', 'Wex'];
+			}
+			else {
+				return ['Esgred', 'Gwin', 'Gysella', 'Asha', 'Alannys',
+						'Gwynesse', 'Helya', 'Meldred', 'Yara'];
+			}
+		},
+		'Riverlands': function(gender) {
+			if (gender === 'Male') {
+				return ['Arlan', 'Beck', 'Bennifer', 'Brynden', 'Hoster',
+						'Lucas', 'Robert', 'Roger', 'Jonos', 'Otho',
+						'Clement', 'Willem', 'Raymun', 'Demon', 'Morgan',
+						'Alyn', 'Benfrey', 'Walder', 'Walder', 'Walder',
+						'Walder', 'Danwell', 'Edwyn', 'Elmar', 'Emmon',
+						'Hosteen', 'Lothar', 'Luceon', 'Lyonel', 'Mathis',
+						'Osmund', 'Petyr', 'Stevron', 'Tytos', 'Tywin',
+						'Walton', 'Waltyr', 'Whalen', 'Lymond', 'Garibald',
+						'Jon', 'Jack', 'Joth', 'Joss'];
+			} else {
+				return ['Bella', 'Bessa', 'Bethany', 'Alysanne', 'Jayne',
+						'Jeyne', 'Mariya', 'Darla', 'Amerei', 'Cersei',
+						'Cynthea', 'Della', 'Jyanna', 'Merianne', 'Leana',
+						'Roslin', 'Maegelle', 'Marissa', 'Serra', 'Tyta',
+						'Shirei', 'Tysane', 'Walda', 'Walda', 'Walda',
+						'Leslyn', 'Bellena', 'Masha', 'Lysa', 'Catelyn'];
+			}
+		},
+		'Vale': function(gender) {
+			if (gender == 'Male') {
+				return ['Denys', 'Jon', 'Robert', 'Ronnel', 'Petyr',
+						'Benedar', 'Godric', 'Lyn', 'Lyonel', 'Lucas',
+						'Vardis', 'Galt', 'Gerold', 'Gyles', 'Gunthor',
+						'Harrold', 'Humfrey', 'Gilwood', 'Harlan', 'Lucos',
+						'Mandon', 'Andar', 'Yohn', 'Robar', 'Nestor',
+						'Samwell', 'Orson', 'Timett', 'Edmund', 'Donnel',
+						'Robin'];
+			} else {
+				return ['Alyssa', 'Jeyne', 'Rowena', 'Sharra', 'Becca',
+						'Chella', 'Gella', 'Deana', 'Janyce', 'Kella',
+						'Ysilla', 'Mya', 'Anya', 'Marsella'];
+			}
+		},
+		'Stormlands': function(gender) {
+			if (gender === 'Male') {
+				return ['Anguy', 'Borros', 'Lyonel', 'Robert', 'Renly',
+						'Stannis', 'Steffon', 'Herbert', 'Ralph', 'Bryce',
+						'Bryen', 'Armond', 'Jon', 'Arrec', 'Sebastion',
+						'Andrew', 'Eldon', 'Gunthor', 'Willis', 'Hugh',
+						'Bonifer', 'Richard', 'Lester', 'Donal', 'Matthos',
+						'Barristan', 'Arstan', 'Cedrik', 'Edrik', 'Rolland',
+						'Ronald', 'Balon', 'Byron', 'Manfred', 'Quentyn',
+						'Simon', 'Selwyn', 'Meryn', 'Criston', 'Ormund',
+						'Willem', 'Casper', 'Humfrey', 'Joffrey', 'Tommen',
+						'Davos', 'Dale'];
+			} else {
+				return ['Argella', 'Shyra', 'Elenei', 'Cassana', 'Marya',
+						'Corenna', 'Cyrenna', 'Jeyne', 'Johanna', 'Ravella',
+						'Brienne', 'Arianne', 'Alysanne', 'Tyana', 'Shireen',
+						'Myrcella'];
+			}
+		},
+		'Crownlands': function(gender) {
+			if (gender === 'Male') {
+				return ['Joffrey', 'Tommen', 'Aegon', 'Aemon', 'Daemon',
+						'Daeron', 'Boros', 'Alfred', 'Bennard', 'Lothor',
+						'Balman', 'Jacelyn', 'Clarence', 'Rupert', 'Harrold',
+						'Steffon', 'Donnel', 'Duncan', 'Glendon', 'Garth',
+						'Gwayne', 'Gendry', 'Elwood', 'Dontos', 'Symon',
+						'Osfryd', 'Osmund', 'Osney', 'Luthor', 'Lommy',
+						'Merrel', 'Robert', 'Davos', 'Janos', 'Morros',
+						'Clayton', 'Aerys', 'Baelor', 'Jaehaerys', 'Maegor',
+						'Maekar', 'Maelor', 'Viserys', 'Rhaegar'];
+			} else {
+				return ['Daenerys', 'Jaehaera', 'Baela', 'Rhaena', 'Rhaenyra',
+						'Visenya', 'Rhaenys', 'Lollys', 'Tanda', 'Bethany',
+						'Shiera', 'Falena', 'Hallyne', 'Armena', 'Myrcella',
+						'Meredyth', 'Donyse', 'Mary'];
+			}
+		},
+		'Reach': function(gender) {
+			if (gender === 'Male') {
+				return ['Arthur', 'Marq', 'Androw', 'Robert', 'Alan',
+						'Ben', 'Bertram', 'Hugh', 'Lyman', 'Warryn',
+						'Leo', 'Buford', 'Cleyton', 'Clifford', 'Owen',
+						'Branston', 'Emmon', 'Dareon', 'Ebrose', 'Alester',
+						'Colin', 'Erren', 'Omer', 'Byren', 'Garrett',
+						'Garse', 'Jon', 'Raymun', 'Steffon', 'Tanton',
+						'Garth', 'Garse', 'Gyles', 'Guthor', 'Glendon',
+						'Gerold', 'Leyton', 'Ormund', 'Otto', 'Hyle',
+						'Alyn', 'Lucas', 'Mark', 'Martyn', 'Hosman',
+						'Titus', 'Hobber', 'Ryam', 'Paxter', 'Mathis',
+						'Thaddeus', 'Randyll', 'Samwell', 'Garlan', 'Loras',
+						'Lorent', 'Lyonel', 'Normund', 'Willas', 'Arys'];
+			} else {
+				return ['Aubrey', 'Jeyne', 'Alysanne', 'Melara', 'Emma',
+						'Melessa', 'Rhea', 'Selyse', 'Leonette', 'Alerie',
+						'Leyla', 'Lysa', 'Bethany', 'Rhonda', 'Lia',
+						'Talla', 'Alla', 'Janna', 'Margaery', 'Victaria'];
+			}
+		},
+		'Dorne': function(gender) {
+			if (gender == 'Male') {
+				return ['Ryon', 'Perros', 'Andrey', 'Arthur', 'Edric',
+						'Gerold', 'Ulrick', 'Gerris', 'Franklyn', 'Tremond',
+						'Trebor', 'Dagos', 'Myles', 'Doran', 'Lewyn',
+						'Manfrey', 'Mors', 'Oberyn', 'Olyvar', 'Quentyn',
+						'Arron', 'Gulian', 'Symon', 'Aron', 'Garibald',
+						'Willam', 'Daeron', 'Anders'];
+			} else {
+				return ['Caleotte', 'Larra', 'Jynessa', 'Ashara', 'Allyria',
+						'Jeyne', 'Jennelyn', 'Myria', 'Alysa', 'Jayne',
+						'Mariya', 'Arianne', 'Elia', 'Trystane', 'Dorea',
+						'Ellaria', 'Loreza', 'Obara', 'Obella', 'Sarella',
+						'Tyene', 'Tanselle', 'Nymella', 'Teora', 'Valena',
+						'Casella', 'Gwyneth', 'Ynys', 'Ysilla'];
+			}
+		}
+	}
+	
+	function getAttributes(gender){
+		var attributes = ['tall', 'short', 'round', 'squat', 'fleshy',
+						  'thin', 'frog-faced', 'fox-faced', 'wiry', 'portly',
+						  'kindly', 'stern-faced', 'muscular', 'nervous', 'comely',
+						  'quick-witted'];
+		if (gender === 'Male') {
+			attributes.push('handsome', 'broad-shouldered', 'barrel-chested', 'weak-chinned', 'burly', 'hard-bitten', 'grizzled', 'gruff');
+		} else {
+			attributes.push('pretty', 'lithe', 'willowy', 'homely');
+		}
+		return attributes;
+	}
+	
+	function getFeatures(age, gender, house){
+		var features = ['a squashed nose', 'a sharp nose', 'a bulbous nose',
+						'a scar across one cheek', 'a reputation for promiscuity',
+						'a soft voice', 'a thin voice', 'a high voice',
+						'teeth gone red from sourleaf', 'green eyes', 'brown eyes',
+						'blue eyes', 'grey eyes', 'narrow eyes', 'bushy eyebrows',
+						'a reputation for violence', 'a voice like honey poured over thunder',
+						'a dimpled chin', 'a snub nose', 'droopy eyes'];
+		if (gender === 'Male') {
+			features.push('a bushy beard', 'a close-cropped beard', 'a wiry beard',
+					      'a thin mustache', 'a thick mustache', 'a pointed beard',
+						  'a booming voice', 'a deep voice');
+		}
+		else {
+			features.push('a freckled face');
+		}
+		if (age >= 50) {
+			features.push('a scarred face', 'a deeply-lined face', 'a wrinkled face');
+		}
+		if (house == 'Targaryen') {
+			features.push('purple eyes', 'purple eyes', 'purple eyes', 'purple eyes');
+		}
+		
+		return features;
+	}
+	
+	function getHair(age, gender, house){
+		var hairColors = [];
+		if (house === 'Targaryen' || house === 'Dayne') {
+			hairColors.push('silver-gold', 'silver-gold', 'silver-gold');
+		}
+		if (gender === 'Male' && age >= 35) {
+			hairColors.push('salt-and-pepper');
+		}
+		if (age >= 45) {
+			hairColors.push('grey', 'white');
+		} else {
+			hairColors.push('black', 'brown', 'auburn', 'fiery red', 'blond', 'straw-colored', 'flaxen');
+			if (house === 'Lannister') {
+				hairColors.push('golden', 'golden', 'golden', 'golden', 'golden', 'golden');
+			}
+		}
+		
+		var hairColor = hairColors[Math.floor(Math.random() * hairColors.length)];
+		
+		var hairStyles = ['straight ' + hairColor + ' hair',
+						  'curly ' + hairColor + ' hair',
+						  'wavy ' + hairColor + ' hair',
+						  'short ' + hairColor + ' hair',
+						  'long ' + hairColor + ' hair',
+						  'unruly ' + hairColor + ' hair'];
+		if (gender === 'Male') {
+			hairStyles.push('a mop of ' + hairColor + ' hair',
+							'a shock of ' + hairColor + ' hair',
+							'a bald head');
+			if (age >= 40) {
+				hairStyles.push('balding hair');
+			}	  
+		} else {
+			hairStyles.push(hairColor + ' hair that falls to her shoulders',
+							hairColor + ' hair that falls to her waist');
+		}
+		if (house === 'Lannister' && age <= 45) {
+			hairStyles.push('a mop of golden curls', 'golden curls',
+							'a mop of golden curls', 'golden curls',
+							'a mop of golden curls', 'golden curls');
+		}
+		
+		var hairStyle = hairStyles[Math.floor(Math.random() * hairStyles.length)];
+		return hairStyle;
+		return 'brown hair';
+	}
+	
+	function getAge(){
+		//30% 13-25, 60% 26-60, 10% 61-99
+		var ageRoll = Math.random();
+		var age;
+		
+		
+		if (ageRoll < 0.3) {
+			age = Math.floor(Math.random() * 13) + 13;
+		} else if (ageRoll < 0.6) {
+			age = Math.floor(Math.random() * 35) + 26;
+		} else {
+			age = Math.floor(Math.random() * 39) + 61;
+		}
+		
+		return age;
+	}
+	
+	function ageToString(rawAge) {
+		var ageString = '';
+		var firstDigit = Math.floor(rawAge / 10);
+		var secondDigit = rawAge % 10;
+		
+		switch (secondDigit) {
+			case 1: ageString += 'one-and-';
+					break;
+			case 2: ageString += 'two-and-';
+					break;
+			case 3: ageString += 'three-and-';
+					break;
+			case 4: ageString += 'four-and-';
+					break;
+			case 5: ageString += 'five-and-';
+					break;
+			case 6: ageString += 'six-and-';
+					break;
+			case 7: ageString += 'seven-and-';
+					break;
+			case 8: ageString += 'eight-and-';
+					break;
+			case 9: ageString += 'nine-and-';
+					break;
+			default: break;
+		}
+		switch (firstDigit) {
+			case 1: ageString += 'ten';
+					break;
+			case 2: ageString += 'twenty';
+					break;
+			case 3: ageString += 'thirty';
+					break;
+			case 4: ageString += 'forty';
+					break;
+			case 5: ageString += 'fifty';
+					break;
+			case 6: ageString += 'sixty';
+					break;
+			case 7: ageString += 'seventy';
+					break;
+			case 8: ageString += 'eighty';
+					break;
+			case 9: ageString += 'ninety';
+					break;
+			default: break;
+		}
+		
+		return ageString;
+	}
+	
+	var regions = ['North', 'Westerlands', 'Iron Islands', 'Riverlands', 'Vale', 'Stormlands', 'Crownlands', 'Reach', 'Dorne'];
+	
+	function Character(gender, region, house) {
+	
+		//select gender
+		if (gender === 'Random') {
+			if (Math.floor(Math.random() * 2) == 0) {
+				this.gender = 'Male';
+			} else {
+				this.gender = 'Female';
+			}
+		} else {
+			this.gender = gender;
+		}
+		
+		//select region
+		if (region === 'Random') {
+			this.region = regions[Math.floor(Math.random() * regions.length)];
+		}
+		else {
+			this.region = region;
+		}
+		
+		//select house
+		if (house === 'Random') {
+			var houseOptions = houseNames[this.region]();
+			this.house = houseOptions[Math.floor(Math.random() * houseOptions.length)];
+		}
+		else {
+			this.house = house;
+		}
+		
+		//select name
+		var firstNameChoices = firstNames[this.region](this.gender);
+		
+		this.name = firstNameChoices[Math.floor(Math.random() * firstNameChoices.length)] + ' ' + this.house;
+		
+		//select age
+		this.rawAge = getAge();
+		this.ageString = ageToString(this.rawAge);
+		
+		var attributes = getAttributes(this.gender);
+		this.attribute = attributes[Math.floor(Math.random() * attributes.length)];
+		
+		var features = getFeatures(this.age, this.gender, this.house);
+		this.feature = features[Math.floor(Math.random() * features.length)];
+		
+		this.hair = getHair(this.rawAge, this.gender, this.house);
+	}
+	
+	Character.prototype.getName = function() {return this.name}
+	Character.prototype.getDesc = function() {
+		//Format: A (attribute) (gender) of (age), with (hair) and (feature).
+		if (this.name === 'Jon Snow') return 'Knows nothing.'
+
+		var desc = 'A ' + this.attribute + ' ';
+		
+		if (this.gender === 'Male') {
+			if (this.rawAge >= 16) {
+				desc += 'man';
+			} else {
+				desc += 'boy';
+			}
+		} else {
+			if (this.rawAge >= 16) {
+				desc += 'woman';
+			} else {
+				desc += 'girl';
+			}
+		}
+		
+		desc += ' of ' + this.ageString + ', with ' + this.hair + ' and ' + this.feature + '.';
+		
+		return desc;
+	}
+	
+	/***********************************************
+	* Disable Text Selection script- © Dynamic Drive DHTML code library (www.dynamicdrive.com)
+	* This notice MUST stay intact for legal use
+	* Visit Dynamic Drive at http://www.dynamicdrive.com/ for full source code
+	
+	***********************************************/
+	
+	function disableSelection(target){
+	
+	    if (typeof target.onselectstart!="undefined") //IE route
+	        target.onselectstart=function(){return false}
+	
+	    else if (typeof target.style.MozUserSelect!="undefined") //Firefox route
+	        target.style.MozUserSelect="none"
+	
+	    else //All other route (ie: Opera)
+	        target.onmousedown=function(){return false}
+	
+	    target.style.cursor = "default"
+	}
+	
+	</script>
+
+</head>
+
+<body>
+
+	<div id="title">
+		
+		A Song of Ice and Fire</br>Character Generator
+	
+	</div>
+	
+	<div id="main">
+		<div id='centered'>
+		
+		<div id="char">
+
+			<div id="charName"></div>
+			
+			<div id="charDesc"></div>
+		
+		</div>
+	
+		<div id="generate-button">Generate!</div>
+		
+		</div>
+	
+	</div>
+	
+	<div id='footer'>
+		
+			<div class='drawer'>
+			
+				<div class='drawer-tab'>Options</div>
+				<div class='drawer-body'>
+					<div class='category' id='gender-drawer'>
+						<table class='drawer-table' style='width:120px'>
+							<tr><td class='gender'>Male</td></tr>
+							<tr><td class='gender'>Female</td></tr>
+							<tr><td></td></tr>
+							<tr><td></td></tr>
+							<tr><td class='gender selected'>Random</td></tr>
+						</table>
+					</div>
+					<div class='category' id='region-drawer'>
+						<table class='drawer-table' style='width:240px'>
+							<tr><td class='region'>North</td><td class='region'>Riverlands</td></tr>
+							<tr><td class='region'>Iron Islands</td><td class='region'>Vale</td></tr>
+							<tr><td class='region'>Westerlands</td><td class='region'>Crownlands</td></tr>
+							<tr><td class='region'>Reach</td><td class='region'>Stormlands</td></tr>
+							<tr><td class='region'>Dorne</td><td class='region selected'>Random</td></tr>
+						</table>
+					</div>
+					<div class='category' id='house-drawer'>
+						<table class='drawer-table' id='house-table' style='width:360px; border-right-style: solid;'>
+							<tr><td></td></tr>
+						</table>
+					</div>
+				
+				</div>
+			
+			</div>
+	</div>
+
+</body>
+
+</html>
