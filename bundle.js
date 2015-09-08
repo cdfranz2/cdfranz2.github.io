@@ -213,35 +213,39 @@
 		description: "I worked in a team of two to add Facebook page mentions to Sprout's message widget. This involved adding a Backbone view to an existing jQuery UI component, as well as handling several asynchronous API requests to look up Facebook page results and store frequently mentioned pages.",
 		link: 'http://sproutsocial.com/insights/tag-facebook-pages-from-sprout/'
 	}, {
+		name: "Personal Portfolio",
+		description: "This website, built in August 2015, emphasizes a responsive, mobile-first design. I included some lightweight React components with the goal of making it painless to add new projects or pages to the site. I also used Sass to manage styles, Backbone routers to have stateful URLs without page loads, and Webpack to bundle it all together.",
+		github: 'https://github.com/chadfranzen/PersonalSite2'
+	}, {
 		name: "Bloodborne Skill Calculator",
-		description: "This is a web app to help others plan their characters in the role-playing game Bloodborne. Users can enter their current and planned attributes through Backbone views, which flows into a Backbone model that calculates resulting character statistics and bubbles them back up to the view.",
+		description: "This is a web app to help others plan their characters in the role-playing game Bloodborne. Users can enter their current and planned attributes through Backbone views, which flows into a Backbone model that calculates resulting character statistics and bubbles them back up to the view. Despite dealing with complex, interdependent data, I maintained an intuitive UI for the user.",
 		link: 'bloodbornecalculator/bloodborne.html',
-		github: 'https://github.com/cdfranz2/BloodborneCalculator'
+		github: 'https://github.com/chadfranzen/BloodborneCalculator'
 	}, {
 		name: "Super Puzzle Ninja",
 		description: "This is a Flash game that I made with the help of the Flixel library in May 2014. It's an action-puzzle game that implements a complex gameplay loop, sprite-based graphics, particle effects, saved high scores, and more while also accounting for performance.",
 		link: 'superpuzzleninja/SuperPuzzleNinja.html',
-		github: 'https://github.com/cdfranz2/SuperPuzzleNinja'
+		github: 'https://github.com/chadfranzen/SuperPuzzleNinja'
 	}, {
 		name: "ASoIaF Character Generator",
 		description: "This is a simple web tool that creates characters fit to live in the world of Westeros. Users can select gender, region, and house options, and then generate characters based on their specifications. I used JavaScript to handle character generation and jQuery to implement the UI, which involves a collapsible, dynamic bottom drawer.",
 		link: 'asoiafgenerator/main.html',
-		github: 'https://github.com/cdfranz2/ASOIAFGenerator'
+		github: 'https://github.com/chadfranzen/ASOIAFGenerator'
 	}, {
 		name: "Can One Fake Randomness?",
 		description: "This is a poster project, entered into the 2014 UIUC Undergraduate Research Symposium, that I worked on with my classmates Rishbabh Marya and Robert Weber, along with Professor A.J. Hildebrand. The project involved developing statistical tests in Java and JavaScript, along with heavy use of the JExcel API for analyzing our experimental data. The poster won an Outstanding Presentation Award from Akuna Capital LLC.",
 		link: 'assets/ursposter.pdf',
-		github: 'https://github.com/cdfranz2/FakeRandomness'
+		github: 'https://github.com/chadfranzen/FakeRandomness'
 	}, {
 		name: "EmEssPaint",
 		description: "This is a non-copyright-infringing drawing program that I made in my high school Computer Science class. It was written in Java and makes use of the AWT API.",
 		link: null,
-		github: 'https://github.com/cdfranz2/EmEssPaint'
+		github: 'https://github.com/chadfranzen/EmEssPaint'
 	}, {
 		name: "R. Kelly Saves the World",
 		description: "This is a top-down, Robotron-style shooter starring everyone's favorite R&B artist that I wrote in Java during the summer of 2013. I extensively utilized Java's object-oriented capabilities to sensibly develop a wide variety of game entities, including several types of enemies and powerups.",
 		link: null,
-		github: 'https://github.com/cdfranz2/RKSTW'
+		github: 'https://github.com/chadfranzen/RKSTW'
 	}];
 
 	var Project = React.createClass({
