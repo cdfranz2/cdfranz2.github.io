@@ -209,6 +209,10 @@
 		value: true
 	});
 	var projectData = [{
+		name: "Sprout Social: Message Approval",
+		description: "I took point on the front-end development for Sprout's new message approval system. This project demanded a complex CRUD workflow that required building several new Backbone components and refactoring legacy code. Additionally, I designed several new, reusable React components that were added to Sprout's pattern library. This feature is projected to drive millions of dollars of new revenue for Sprout.",
+		link: "http://sproutsocial.com/insights/message-approval-workflow/"
+	}, {
 		name: "Sprout Social: Facebook Mentions",
 		description: "I worked in a team of two to add Facebook page mentions to Sprout's message widget. This involved adding a Backbone view to an existing jQuery UI component, as well as handling several asynchronous API requests to look up Facebook page results and store frequently mentioned pages.",
 		link: 'http://sproutsocial.com/insights/tag-facebook-pages-from-sprout/'
