@@ -8,51 +8,89 @@ html, body {
   font-weight: 300; }
 
 /* line 11, ../../source_sass/_base.scss */
+body.is-reveal-open {
+  padding-right: 8px; }
+
+/* Turn on custom 8px wide scrollbar */
+/* line 16, ../../source_sass/_base.scss */
+::-webkit-scrollbar {
+  width: 8px;
+  /* 1px wider than Lion. */
+  /* This is more usable for users trying to click it. */
+  background-color: #191919;
+  -webkit-border-radius: 100px; }
+
+/* hover effect for both scrollbar area, and scrollbar 'thumb' */
+/* line 23, ../../source_sass/_base.scss */
+::-webkit-scrollbar:hover {
+  background-color: #272727; }
+
+/* The scrollbar 'thumb' ...that marque oval shape in a scrollbar */
+/* line 28, ../../source_sass/_base.scss */
+::-webkit-scrollbar-thumb:vertical {
+  background: rgba(255, 255, 255, 0.3);
+  -webkit-border-radius: 100px; }
+
+/* line 32, ../../source_sass/_base.scss */
+::-webkit-scrollbar-thumb:vertical:active {
+  background: rgba(255, 255, 255, 0.4);
+  /* Some darker color when you click it */
+  -webkit-border-radius: 100px; }
+
+/* line 37, ../../source_sass/_base.scss */
 p {
   font-size: 1.15em; }
 
-/* line 15, ../../source_sass/_base.scss */
+/* line 41, ../../source_sass/_base.scss */
 h1, h3 {
   letter-spacing: 2px;
   text-transform: uppercase; }
 
-/* line 20, ../../source_sass/_base.scss */
+/* line 46, ../../source_sass/_base.scss */
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Open Sans Condensed", sans-serif; }
+
+/* line 50, ../../source_sass/_base.scss */
 .highlight {
   color: #FEE855; }
 
-/* line 24, ../../source_sass/_base.scss */
+/* line 54, ../../source_sass/_base.scss */
 .transparent {
   background-color: rgba(0, 0, 0, 0.7);
   position: absolute;
   width: 100%;
   height: 100vh; }
 
-/* line 31, ../../source_sass/_base.scss */
+/* line 61, ../../source_sass/_base.scss */
 .sticky {
   z-index: 2; }
 
-/* line 35, ../../source_sass/_base.scss */
+/* line 65, ../../source_sass/_base.scss */
 .title {
   text-transform: uppercase;
   letter-spacing: 2px;
   margin-bottom: 60px; }
 
-/* line 41, ../../source_sass/_base.scss */
+/* line 71, ../../source_sass/_base.scss */
 .white {
   background-color: #f6f6f6;
   color: #191919;
   width: 100%; }
 
-/* line 47, ../../source_sass/_base.scss */
+/* line 77, ../../source_sass/_base.scss */
 #site-container {
   overflow-x: hidden; }
 
-/* line 51, ../../source_sass/_base.scss */
+/* line 81, ../../source_sass/_base.scss */
+.top-bar, #nav-list {
+  background-color: #191919; }
+
+/* line 85, ../../source_sass/_base.scss */
 .nav-container {
   position: fixed;
   width: 100%;
   z-index: 2; }
-  /* line 56, ../../source_sass/_base.scss */
+  /* line 90, ../../source_sass/_base.scss */
   .nav-container nav, .nav-container .title-bar {
     font-family: "Open Sans Condensed", sans-serif;
     font-weight: bold;
@@ -62,23 +100,23 @@ h1, h3 {
     -moz-transition: all 0.25s ease-in-out;
     -o-transition: all 0.25s ease-in-out;
     transition: all 0.25s ease-in-out; }
-    /* line 63, ../../source_sass/_base.scss */
+    /* line 97, ../../source_sass/_base.scss */
     .nav-container nav .active, .nav-container .title-bar .active {
       color: #FEE855; }
-    /* line 67, ../../source_sass/_base.scss */
+    /* line 101, ../../source_sass/_base.scss */
     .nav-container nav.page-end a, .nav-container .title-bar.page-end a {
       color: #f6f6f6; }
-      /* line 69, ../../source_sass/_base.scss */
+      /* line 103, ../../source_sass/_base.scss */
       .nav-container nav.page-end a#nav-last, .nav-container .title-bar.page-end a#nav-last {
         color: #FEE855; }
-    /* line 74, ../../source_sass/_base.scss */
+    /* line 108, ../../source_sass/_base.scss */
     .nav-container nav a, .nav-container .title-bar a {
       text-align: center;
       color: #f6f6f6; }
-      /* line 77, ../../source_sass/_base.scss */
+      /* line 111, ../../source_sass/_base.scss */
       .nav-container nav a:hover, .nav-container .title-bar a:hover {
         color: #FEE855 !important; }
-    /* line 82, ../../source_sass/_base.scss */
+    /* line 116, ../../source_sass/_base.scss */
     .nav-container nav.large, .nav-container .title-bar.large {
       font-size: 1.175em;
       padding-top: 10px;
@@ -88,7 +126,7 @@ h1, h3 {
       -o-transition: all 0.25s ease-in-out;
       transition: all 0.25s ease-in-out; }
 
-/* line 91, ../../source_sass/_base.scss */
+/* line 125, ../../source_sass/_base.scss */
 #hero {
   background-image: url("../data/computer.jpg");
   background-size: cover;
@@ -100,75 +138,75 @@ h1, h3 {
   margin-right: auto;
   max-width: initial;
   color: #f6f6f6; }
-  /* line 106, ../../source_sass/_base.scss */
+  /* line 140, ../../source_sass/_base.scss */
   #hero .hero-text {
     position: relative;
     top: 50%;
     transform: translateY(-50%);
     text-align: center; }
-    /* line 109, ../../source_sass/_base.scss */
+    /* line 143, ../../source_sass/_base.scss */
     #hero .hero-text h1 {
       text-transform: uppercase; }
-    /* line 112, ../../source_sass/_base.scss */
+    /* line 146, ../../source_sass/_base.scss */
     #hero .hero-text h3 {
       text-transform: none; }
 
-/* line 119, ../../source_sass/_base.scss */
+/* line 153, ../../source_sass/_base.scss */
 #about {
   padding-bottom: 150px; }
-  /* line 121, ../../source_sass/_base.scss */
+  /* line 155, ../../source_sass/_base.scss */
   #about .info {
     padding-left: 30px;
     padding-right: 30px;
     margin-top: 150px; }
-    /* line 126, ../../source_sass/_base.scss */
+    /* line 160, ../../source_sass/_base.scss */
     #about .info h3 {
       color: #FEE855;
       letter-spacing: 2px; }
-    /* line 131, ../../source_sass/_base.scss */
+    /* line 165, ../../source_sass/_base.scss */
     #about .info p {
       text-align: center; }
 
-/* line 137, ../../source_sass/_base.scss */
+/* line 171, ../../source_sass/_base.scss */
 #projects {
   padding-top: 100px;
   padding-bottom: 100px; }
-  /* line 141, ../../source_sass/_base.scss */
+  /* line 175, ../../source_sass/_base.scss */
   #projects p {
     padding: 0 30px; }
-  /* line 145, ../../source_sass/_base.scss */
+  /* line 179, ../../source_sass/_base.scss */
   #projects .slick-dots {
     margin-left: -15px; }
-  /* line 149, ../../source_sass/_base.scss */
+  /* line 183, ../../source_sass/_base.scss */
   #projects .slick-prev:before, #projects .slick-next:before {
     color: #191919 !important; }
-  /* line 153, ../../source_sass/_base.scss */
+  /* line 187, ../../source_sass/_base.scss */
   #projects .links {
     font-size: 1.3em;
     font-family: "Open Sans Condensed", sans-serif; }
-    /* line 156, ../../source_sass/_base.scss */
+    /* line 190, ../../source_sass/_base.scss */
     #projects .links a {
       color: #191919; }
-      /* line 158, ../../source_sass/_base.scss */
+      /* line 192, ../../source_sass/_base.scss */
       #projects .links a:hover {
         text-decoration: underline; }
 
-/* line 167, ../../source_sass/_base.scss */
+/* line 201, ../../source_sass/_base.scss */
 #future {
   position: relative;
   height: 500px; }
-  /* line 171, ../../source_sass/_base.scss */
+  /* line 205, ../../source_sass/_base.scss */
   #future .video-container {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%; }
-    /* line 174, ../../source_sass/_base.scss */
+    /* line 208, ../../source_sass/_base.scss */
     #future .video-container video {
       height: 100%;
       display: none; }
-    /* line 179, ../../source_sass/_base.scss */
+    /* line 213, ../../source_sass/_base.scss */
     #future .video-container .filter {
       position: absolute;
       top: 0;
@@ -176,7 +214,7 @@ h1, h3 {
       width: 100%;
       height: 100%;
       background: rgba(0, 0, 0, 0.3); }
-  /* line 185, ../../source_sass/_base.scss */
+  /* line 219, ../../source_sass/_base.scss */
   #future .text-container {
     position: absolute;
     top: 0;
@@ -184,94 +222,96 @@ h1, h3 {
     width: 100%;
     height: 100%;
     font-size: 1.4em; }
-    /* line 189, ../../source_sass/_base.scss */
+    /* line 223, ../../source_sass/_base.scss */
     #future .text-container .row {
       max-width: 889px;
       margin: 0 auto;
       position: relative;
       top: 50%;
       transform: translateY(-50%); }
-      /* line 195, ../../source_sass/_base.scss */
+      /* line 229, ../../source_sass/_base.scss */
       #future .text-container .row p {
         padding-left: 20px;
         padding-right: 20px;
         text-shadow: black 1px 1px 1px; }
 
-/* line 205, ../../source_sass/_base.scss */
+/* line 239, ../../source_sass/_base.scss */
 #skills {
   padding-top: 100px;
   padding-bottom: 100px; }
-  /* line 209, ../../source_sass/_base.scss */
+  /* line 243, ../../source_sass/_base.scss */
   #skills .modal {
     border-top: 1px solid black;
     border-bottom: 1px solid black;
     padding: 50px 0px;
     box-sizing: border-box;
     color: #191919; }
-    /* line 216, ../../source_sass/_base.scss */
+    /* line 250, ../../source_sass/_base.scss */
     #skills .modal.middle {
       border: none; }
-    /* line 220, ../../source_sass/_base.scss */
+    /* line 254, ../../source_sass/_base.scss */
     #skills .modal i {
       font-size: 3em;
       margin-bottom: 10px; }
-    /* line 225, ../../source_sass/_base.scss */
+    /* line 259, ../../source_sass/_base.scss */
     #skills .modal:hover {
       background-color: #191919;
       color: #FEE855; }
-  /* line 231, ../../source_sass/_base.scss */
-  #skills .reveal {
-    color: #f6f6f6;
-    padding: 60px 60px; }
-    /* line 235, ../../source_sass/_base.scss */
-    #skills .reveal .close-button {
-      position: absolute;
-      top: 0;
-      right: 0;
-      color: #f6f6f6;
-      padding-right: 15px;
-      padding-top: 15px; }
-      /* line 236, ../../source_sass/_base.scss */
-      #skills .reveal .close-button span {
-        font-size: 2.25em;
-        line-height: 15px; }
-      /* line 248, ../../source_sass/_base.scss */
-      #skills .reveal .close-button:hover {
-        color: #FEE855; }
-    /* line 253, ../../source_sass/_base.scss */
-    #skills .reveal h3 {
-      margin-bottom: 20px; }
-    /* line 257, ../../source_sass/_base.scss */
-    #skills .reveal li {
-      font-size: 1.1em; }
 
-/* line 263, ../../source_sass/_base.scss */
+/* line 266, ../../source_sass/_base.scss */
+.reveal {
+  color: #f6f6f6;
+  background-color: #191919;
+  padding: 60px 60px; }
+  /* line 271, ../../source_sass/_base.scss */
+  .reveal .close-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: #f6f6f6;
+    padding-right: 15px;
+    padding-top: 15px; }
+    /* line 272, ../../source_sass/_base.scss */
+    .reveal .close-button span {
+      font-size: 2.25em;
+      line-height: 15px; }
+    /* line 284, ../../source_sass/_base.scss */
+    .reveal .close-button:hover {
+      color: #FEE855; }
+  /* line 289, ../../source_sass/_base.scss */
+  .reveal h3 {
+    margin-bottom: 20px; }
+  /* line 293, ../../source_sass/_base.scss */
+  .reveal li {
+    font-size: 1.1em; }
+
+/* line 298, ../../source_sass/_base.scss */
 #contact {
   padding-bottom: 150px;
   padding-top: 100px; }
-  /* line 267, ../../source_sass/_base.scss */
+  /* line 302, ../../source_sass/_base.scss */
   #contact h3 {
     letter-spacing: 2px;
     text-transform: uppercase;
     color: #FEE855; }
-  /* line 273, ../../source_sass/_base.scss */
+  /* line 308, ../../source_sass/_base.scss */
   #contact i {
     margin-top: 60px;
     font-size: 5em;
     color: #f6f6f6; }
-    /* line 277, ../../source_sass/_base.scss */
+    /* line 312, ../../source_sass/_base.scss */
     #contact i:hover {
       color: #FEE855; }
 
 @media (min-width: 640px) {
-  /* line 284, ../../source_sass/_base.scss */
+  /* line 319, ../../source_sass/_base.scss */
   #future .video-container video {
     display: initial; }
 
-  /* line 289, ../../source_sass/_base.scss */
+  /* line 324, ../../source_sass/_base.scss */
   #skills .modal {
     border: 1px solid black; }
-    /* line 292, ../../source_sass/_base.scss */
+    /* line 327, ../../source_sass/_base.scss */
     #skills .modal.middle {
       border-top: 1px solid black;
       border-bottom: 1px solid black;

@@ -9,7 +9,8 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
   <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700,300italic' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="./foundation6_lib/css/foundation.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation-float.min.css" integrity="sha256-4ldVyEvC86/kae2IBWw+eJrTiwNEbUUTmN0zkP4luL4=" crossorigin="anonymous">
+  
   <link rel="stylesheet" type="text/css" href="http://cdn.jsdelivr.net/jquery.slick/1.5.9/slick.css"/>
   <link rel="stylesheet" type="text/css" href="http://cdn.jsdelivr.net/jquery.slick/1.5.9/slick-theme.css"/>
   <link rel="stylesheet" href="./css/styles.css">
@@ -25,13 +26,13 @@
           <button class="menu-icon" type="button" data-toggle></button>
           <div class="title-bar-title">Menu</div>
         </div>
-        <nav id="nav-menu" class="top-bar large" data-magellan data-activeClass="highlight">
-          <ul class="vertical medium-horizontal menu expanded">
+        <nav id="nav-menu" class="top-bar large">
+          <ul id="nav-list" class="vertical medium-horizontal menu expanded" data-magellan>
             <li><a href="#about">ABOUT</a></li>
             <li><a href="#projects">PROJECTS</a></li>
             <li><a href="#skills">SKILLS</a></li>
             <li><a id="nav-last" href="#contact">CONTACT</a></li>
-			<li><a href="./assets/resume-chadfranzen.pdf">RESUME</a></li>
+            <li><a href="./assets/resume-chadfranzen.pdf">RESUME</a></li>
           </ul>
         </nav>
       </div>
@@ -41,161 +42,107 @@
       <div class="transparent"></div>
       <div class="hero-text columns">
         <h1 class="highlight">Chad Franzen</h1>
-        <h3>is a <span class="highlight">software engineer</span> and student at the <span class="highlight">University of Illinois</span></h3>
+        <h3>is a <span class="highlight">software engineer</span> currently working at <span class="highlight">Google</span></h3>
       </div>
     </section>
 
-    <section id="about" class="row" data-magellan-target="about">
-      <div class="columns">
-        <div class="row">
-          <div class="columns medium-4 info fade">
-            <h3>ENGINEER</h3> 
-            <p>
-            I have experience with a broad range of computer science topics, with an emphasis in full-stack web development. In my previous internships at Google and Sprout Social, I have developed and and deployed complex systems on the web.
-            </p>
-          </div>
-          <div class="columns medium-4 info fade">
-            <h3>STUDENT</h3> 
-            <p>
-            At UIUC, I'm a James Scholar and a member of the Campus Honors Program. I'm also a course assistant for CS 498 - The Art of Web Programming. I'm currently working on a senior thesis in data-driven design with Prof. Ranjitha Kumar.</p>
-          </div>
-          <div class="columns medium-4 info fade">
-            <h3>ACTUAL PERSON</h3> 
-            <p>
-            I'm a Chicagoland native, raised in the northwest suburbs. My hobbies include reading, video games, cooking, listening to standup comedy, and bugging people about A Song of Ice and Fire. My favorite Kanye West album is My Beautiful Dark Twisted Fantasy.
-           </p>
+    <div class="sections">
+      <section id="about" class="row" data-magellan-target="about">
+        <div class="columns">
+          <div class="row">
+            <div class="columns medium-4 info fade">
+              <h3>WOW HE'S AN ENGINEER</h3> 
+              <p>
+              I have experience with a broad range of computer science topics, with an emphasis in full-stack web development.
+              </p>
+            </div>
+            <div class="columns medium-4 info fade">
+              <h3>AND HE WENT TO COLLEGE?</h3> 
+              <p>
+                I have a BS in Computer Science from the University of Illinois at Urbana-Champaign, where I graduated with highest honors in the top 3% of my class. While I was there I worked with Prof. Ranjitha Kumar as part of her data-driven design group, which resulted in two published papers. I also was a TA for CS498: The Art and Science of Web Programming.
+              </p>
+            </div>
+            <div class="columns medium-4 info fade">
+              <h3>AND HE'S AN ACTUAL PERSON?</h3> 
+              <p>
+              I'm a Chicagoland native now living in NYC, so I miss Portillo's but love a good bagel. My hobbies include reading, writing, video games, cooking, and going to concerts. My favorite Animal Crossing villager is Tangy.
+             </p>
+           </div>
          </div>
-       </div>
-      </div>
-    </section>
+        </div>
+      </section>
 
-  <div class="white" ng-controller="Projects">
-    <section id="projects" class="row" data-magellan-target="projects">
-      <div class="row title">
-        <h3>Projects</h3>
-      </div>
-      <div class="row">
-        <div class="columns medium-8 medium-centered large-centered carousel fade">
-          <div ng-repeat="project in projects" slick-carousel>
-			  <h4>{{project.name}}</h4>
-			  <p>{{project.description}}</p>
-			  <span class="links">
-				  <a ng-href="{{project.github}}" ng-show="project.github">Github</a>
-				  <span ng-show="project.github && project.link">&bull;</span>
-				  <a ng-href="{{project.link}}" ng-show="project.link">View</a>
-			  </span>
+    <div class="white" ng-controller="Projects">
+      <section id="projects" class="row" data-magellan-target="projects">
+        <div class="row title">
+          <h3>Projects</h3>
+        </div>
+        <div class="row" ng-cloak>
+          <div class="columns medium-8 medium-centered large-centered carousel fade">
+            <div ng-repeat="project in projects" slick-carousel>
+          <h4>{{project.name}}</h4>
+          <p>{{project.description}}</p>
+          <span class="links">
+            <a ng-href="{{project.github}}" ng-show="project.github">Github</a>
+            <span ng-show="project.github && project.link">&bull;</span>
+            <a ng-href="{{project.link}}" ng-show="project.link" target="_blank">View</a>
+          </span>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
-  </div>
-
-  <section id="future">
-    <div class="video-container">
-      <video id="video" no-controls autoplay muted loop src="./data/nyc.mp4"></video>
-      <div class="filter"></div>
+      </section>
     </div>
-    <div class="text-container">
-      <div class="row">
-        <div class="columns medium-4 medium-offset-7 fade">
-          <p>Last summer, I interned with <span class="highlight">Google</span> in <span class="highlight">New York City</span>, where I was a part of their Answers team.</p>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <div class="white">
-    <section id="skills" class="row" data-magellan-target="skills">
-      <div class="row title">
-        <h3>SKILLS</h3>
+    <section id="future">
+      <div class="video-container">
+        <video id="video" no-controls autoplay muted loop src="./data/nyc.mp4"></video>
+        <div class="filter"></div>
       </div>
-      <div class="row">
-        <div class="columns medium-10 medium-centered">
-          <div class="columns medium-4 fade">
-            <div class="row">
-              <button class="modal columns medium-centered" data-open="coursework">
-                <i class="fa fa-book"></i>
-                <h4>Coursework</h4>
-              </button>
-            </div>
-          </div>
-          <div class="columns medium-4 fade">
-            <div class="row">
-              <button class="modal columns medium-centered middle" data-open="languages">
-                <i class="fa fa-terminal"></i>
-                <h4>Languages</h4>
-              </button>
-            </div>
-          </div>
-          <div class="columns medium-4 fade">
-            <div class="row">
-              <button class="modal columns medium-centered" data-open="web">
-                <i class="fa fa-code"></i>
-                <h4>Web Dev</h4>
-              </button>
-            </div>
+      <div class="text-container">
+        <div class="row">
+          <div class="columns medium-4 medium-offset-7 fade">
+            <p>I am currently a software engineer at <span class="highlight">Google</span> in <span class="highlight">New York City</span>, where I am a part of the Google Workspace team.</p>
           </div>
         </div>
-      </div>
-
-      <div class="small reveal fast" id="coursework" data-reveal>
-        <button class="close-button" data-close aria-label="Close modal" type="button">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <h3>COURSEWORK</h3>
-
-        <ul class="no-bullet">
-          <li>Discrete Mathematics</li>
-          <li>Data Structures</li>
-          <li>Systems Programming</li>
-          <li>Algorithms and Models of Computation</li>
-          <li>Computer Architecture</li>
-          <li>Programming Studio</li>
-          <li>Database Systems</li>
-          <li>Computer Security</li>
-          <li>Web Programming</li>
-          <li>Text Information Systems</li>
-          <li>Programming Languages</li>
-        </ul>
-      </div>
-      <div class="small reveal fast" id="languages" data-reveal>
-        <button class="close-button" data-close aria-label="Close modal" type="button">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <h3>LANGUAGES</h3>
-
-        <ul class="no-bullet">
-          <li>JavaScript</li>
-          <li>Java</li>
-          <li>C/C++</li>
-          <li>ActionScript</li>
-          <li>Haskell</li>
-          <li>Python</li>
-          <li>Ruby</li>
-		  <li>MongoDB</li>
-          <li>MySQL</li>
-        </ul>
-      </div>
-      <div class="small reveal" id="web" data-reveal>
-        <button class="close-button" data-close aria-label="Close modal" type="button">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <h3>WEB DEV</h3>
-
-        <ul class="no-bullet">
-          <li>HTML/CSS/Sass</li>
-          <li>ES6 JavaScript</li>
-          <li>Node.js</li>  
-          <li>jQuery</li>
-		  <li>Angular</li>
-          <li>Backbone</li>
-          <li>React</li>
-          <li>Grunt</li>
-          <li>Webpack</li>
-        </ul>
       </div>
     </section>
-  </div>
+
+    <div class="white">
+      <section id="skills" class="row" data-magellan-target="skills">
+        <div class="row title">
+          <h3>SKILLS</h3>
+        </div>
+        <div class="row">
+          <div class="columns medium-10 medium-centered">
+            <div class="columns medium-4 fade">
+              <div class="row">
+                <button class="modal columns medium-centered" data-open="coursework">
+                  <i class="fa fa-book"></i>
+                  <h4>Coursework</h4>
+                </button>
+              </div>
+            </div>
+            <div class="columns medium-4 fade">
+              <div class="row">
+                <button class="modal columns medium-centered middle" data-open="languages">
+                  <i class="fa fa-terminal"></i>
+                  <h4>Languages</h4>
+                </button>
+              </div>
+            </div>
+            <div class="columns medium-4 fade">
+              <div class="row">
+                <button class="modal columns medium-centered" data-open="web">
+                  <i class="fa fa-code"></i>
+                  <h4>Web Dev</h4>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    </div>
 
   <section id="contact" class="row" data-magellan-target="contact">
   <div class="row">
@@ -204,23 +151,19 @@
   <div class="row">
     <div class="columns small-10 medium-8 small-centered">
       <div class="row">
-        <div class="columns small-6 medium-3 contact-icon fade">
-          <a href="https://www.facebook.com/chad.franzen.9">
-            <i class="fa fa-facebook-official"></i></a>
-          </div>
-          <div class="columns small-6 medium-3 contact-icon fade">
-            <a href="https://twitter.com/_chadfranzen">
-              <i class="fa fa-twitter"></i>
-            </a>
-          </div>
-          <div class="columns small-6 medium-3 contact-icon fade">
+          <div class="columns small-4 medium-4 contact-icon fade">
             <a href="https://www.linkedin.com/in/chad-franzen-443498a4">
               <i class="fa fa-linkedin"></i>
             </a>
           </div>
-          <div class="columns small-6 medium-3 contact-icon fade">
+          <div class="columns small-4 medium-4 contact-icon fade">
             <a href="https://github.com/chadfranzen">
               <i class="fa fa-github"></i>
+            </a>
+          </div>
+          <div class="columns small-4 medium-4 contact-icon fade">
+            <a href="mailto:chadfranzen95@gmail.com">
+              <i class="fa fa-envelope"></i>
             </a>
           </div>
         </div>
@@ -228,9 +171,69 @@
     </div>
   </section>
 </div>
+<div class="small reveal fast" id="coursework" data-reveal>
+  <button class="close-button" data-close aria-label="Close modal" type="button">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <h3>COURSEWORK</h3>
+  <ul class="no-bullet">
+    <li>Discrete Mathematics</li>
+    <li>Computer Architecture</li>
+    <li>Systems Programming</li>
+    <li>Algorithms &amp; Models of Computation</li>
+    <li>Programming Studio</li>
+    <li>Numerical Methods</li>
+    <li>Database Systems</li>
+    <li>Computer Security I &amp; II</li>
+    <li>Web Programming</li>
+    <li>Communication Networks</li>
+    <li>Text Information Systems</li>
+    <li>Programming Languages</li>
+    <li>Interactive Computer Graphics</li>
+    <li>Virtual Reality</li>
+    <li>Distributed Systems</li>
+    <li>User Interface Design</li>
+  </ul>
+</div>
+<div class="small reveal fast" id="languages" data-reveal>
+  <button class="close-button" data-close aria-label="Close modal" type="button">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <h3>LANGUAGES</h3>
+
+  <ul class="no-bullet">
+    <li>JavaScript</li>
+    <li>TypeScript</li>
+    <li>Python</li>
+    <li>C/C++</li>
+    <li>Haskell</li>
+  </ul>
+</div>
+<div class="small reveal" id="web" data-reveal>
+  <button class="close-button" data-close aria-label="Close modal" type="button">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <h3>WEB DEV</h3>
+
+  <ul class="no-bullet">
+    <li>HTML/CSS/Sass</li>
+    <li>ES2021 JavaScript</li>
+    <li>Node.js</li>  
+    <li>Angular &amp; AngularJS</li>
+    <li>React</li>
+    <li>Redux</li>
+    <li>Grunt</li>
+    <li>Webpack</li>
+    <li>Closure</li>
+    <li>NPM</li>
+    <li>Google Cloud Platform</li>
+    <li>Git</li>
+    <li>Mercurial</li>
+  </ul>
+</div>
 <!-- Scripts -->
 <script src="./lib/jquery-2.1.3.min/index.js"></script>
-<script src="./foundation6_lib/js/foundation.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js" integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o=" crossorigin="anonymous"></script>
 <script type="text/javascript" src="http://cdn.jsdelivr.net/jquery.slick/1.5.9/slick.min.js"></script>
 <script src="./js/script.js"></script>
 <script src="http://localhost:35729/livereload.js"></script>
